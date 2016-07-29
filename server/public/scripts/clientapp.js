@@ -2,9 +2,12 @@ var myApp = angular.module('myApp', ['ngRoute']);
 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
-
+    .when('/submit', {
+      templateUrl: '/views/templates/submit.html',
+      controller: "AddController"
+    })
     .when('/list', {
-      templateUrl: '/views/submit.html',
+      templateUrl: '/views/list.html',
       controller: "ListController"
     })
     .when('/wishlist', {
@@ -12,7 +15,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: "WishController"
     })
     .otherwise({
-      redirectTo: 'list'
+      redirectTo: 'submit'
     })
 
 }
