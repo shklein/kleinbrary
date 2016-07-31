@@ -3,39 +3,46 @@ var router = express.Router();
 var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/samanthaklein';
 
-// router.get('/', function (req, res) {
-//   var searchTerm = {};
-//    if (req.query.title) {
-//     searchTerm = {"title": new RegExp(req.query.title, "i")};
-//     } else if (req.query.mainIngred) {
-//   searchTerm = {"mainIngred": new RegExp(req.query.mainIngred, "i")};
-// } else if (req.query.rating) {
-//    searchTerm = {"rating": req.query.rating};
-//  }
-//
-//   Recipe.find(searchTerm, function (err, recipes) {
-//     if (err) {
-//       res.sendStatus(500);
-//       return;
-//     }
-//
-//     res.send(recipes);
-//   }).limit(25);
-// });
-//
-//
-// router.post('/', function (req, res) {
-//   var recipe = new Recipe(req.body);
-//   recipe.save(function (err) {
-//     if (err) {
-//       console.log(err);
-//       res.sendStatus(500);
-//       return;
-//     }
-//
-//     res.sendStatus(201);
-//   });
-// });
+router.get('/', function (req, res) {
+  pg.connect(connectionString, function (err, client, done) {
+    if (err) {
+      res.sendStatus(500);
+    }
+
+    client.query('SELECT * FROM books', function (err, result) {
+      done();
+
+      console.log(result.rows);
+
+      res.send(result.rows);
+    });
+  });
+});
+
+router.post('/', function (req, res) {
+  var book = req.body;
+  console.log(book);
+  pg.connect(connectionString, function (err, client, done) {
+    if (err) {
+      res.sendStatus(500);
+    }
+
+    client.query('INSERT INTO books (title, author, barcode, due_date, user_id) ' +
+                  'VALUES ($1, $2, $3, $4, $5)',
+                   [book.title, book.author, book.id, book.dueDate, book.user],
+                 function (err, result) {
+                   done();
+
+                   if (err) {
+                     res.sendStatus(500);
+                     return;
+                   }
+
+                   res.sendStatus(201);
+                 });
+  });
+});
+
 
 
 module.exports = router;

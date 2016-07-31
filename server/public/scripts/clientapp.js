@@ -7,7 +7,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: "AddController"
     })
     .when('/list', {
-      templateUrl: '/views/list.html',
+      templateUrl: '/views/templates/list.html',
       controller: "ListController"
     })
     .when('/wishlist', {
