@@ -9,7 +9,8 @@ router.get('/', function (req, res) {
       res.sendStatus(500);
     }
 
-    client.query('SELECT * FROM books', function (err, result) {
+    client.query('SELECT title, author, barcode, due_date, username FROM books ' +
+          'JOIN users ON books.user_id = users.user_id;', function (err, result) {
       done();
 
       console.log(result.rows);

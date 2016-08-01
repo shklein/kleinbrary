@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 //modules
 var index = require('./routes/index');
 var books = require('./routes/books');
+var users = require('./routes/users');
 
 // middleware
 app.use(express.static(path.join(__dirname, './public')));
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 
 //express routes
 app.use('/books', books);
+app.use('/users', users);
 app.use('/', index);
 
 // start server

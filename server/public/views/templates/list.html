@@ -1,20 +1,20 @@
 <table class="table table-striped table-bordered">
     <thead>
             <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Barcode</th>
+              <th>Due Date</th>
+              <th>Checked Out By:</th>
             </tr>
     </thead>
     <tbody>
-        <tr id="bookList" ng-repeat="book in books | orderBy:'user'">
+        <tr id="bookList" ng-repeat="book in books | orderBy:'username'">
               <td id="book" name="title">{{book.title}}</td>
               <td id="book" name="author">{{book.author}}</td>
-              <td id="book" name="id">{{book.id}}</td>
-              <td id="book" name="dueDate">{{book.dueDate}}</td>
-              <td id="book" name="user">{{book.user}}</td>
+              <td id="book" name="id">{{book.barcode}}</td>
+              <td id="book" name="dueDate">{{book.due_date | date: 'MM/dd/yyyy'}}</td>
+              <td id="book" name="user">{{book.username}}</td>
         </tr>
       </tbody>
     </table>

@@ -3,7 +3,7 @@
       <div class="form-group row">
         <label for="user" class="col-sm-2 form-control-label">User:</label>
         <div class="col-sm-10">
-          <select ng-model="selectedUser" ng-options="x for x in user" class="form-control">
+          <select ng-model="selectedUser" ng-options="user.user_id as user.username for user in users" class="form-control">
           </select>
         </div>
       </div>
