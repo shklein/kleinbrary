@@ -3,6 +3,14 @@ body {
 }
 
 h1 {
+  height: 100px;
+  width: auto;
   text-align:  center;
   color: white;
+  background: url('../views/img/bookshelf.jpeg');
+}
+
+.wrap {
+  margin: 10px;
+  text-align: center;
 }
