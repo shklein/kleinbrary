@@ -6,8 +6,9 @@
               <th>Barcode</th>
               <th>Due Date</th>
               <th>Checked Out By:</th>
+              <th></th>
             </tr>
-    </thead>
+            </thead>
     <tbody>
         <tr id="bookList" ng-repeat="book in books | orderBy:'username'">
               <td id="book" name="title">{{book.title}}</td>
@@ -15,6 +16,7 @@
               <td id="book" name="id">{{book.barcode}}</td>
               <td id="book" name="dueDate">{{book.due_date | date: 'MM/dd/yyyy'}}</td>
               <td id="book" name="user">{{book.username}}</td>
+              <td class="text-center"><button ng-click="returnBk(book)">Return</button></td>
         </tr>
       </tbody>
     </table>

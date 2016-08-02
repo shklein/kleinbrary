@@ -14,6 +14,21 @@ myApp.controller('ListController', ['$scope', '$http', function($scope, $http)
       });
   }
 
+//remove returned item
+$scope.returnBk = function(book) {
+      var barcode = book.barcode;
+      var returnBook = confirm('Are you sure you returned ' + book.title + '?');
+      if (returnBook === true){
+        $http.delete('/books/delete/' + barcode)
+          .then(function (response) {
+            getBooks();
+            return;
+          });
+        } else {
+          return;
+        }
+    };
+  
 
 
   }]);

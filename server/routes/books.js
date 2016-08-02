@@ -44,6 +44,28 @@ router.post('/', function (req, res) {
   });
 });
 
+router.delete('/delete/:barcode', function(req, res) {
+    var barcode = req.params.barcode;
+    pg.connect(connectionString, function(err, client, done) {
+            if (err) {
+                console.log('connection err');
+                res.sendStatus(500);
+            }
+            client.query('DELETE FROM books ' +
+                         'WHERE barcode = $1 ',
+                         [barcode],
+                function(err, result) {
+                    done();
+                    if (err) {
+                        console.log('put err');
+                        res.sendStatus(500);
+                        return;
+                    }
+                    res.sendStatus(204);
+                });
+    });
+});
+
 
 
 module.exports = router;
