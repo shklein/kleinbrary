@@ -14,3 +14,11 @@ h1 {
   margin: 10px;
   text-align: center;
 }
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}

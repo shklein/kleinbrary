@@ -1,6 +1,7 @@
 myApp.controller('ListController', ['$scope', '$http', function($scope, $http)
 {
 
+
   getBooks();
 
   //get list
@@ -9,10 +10,18 @@ myApp.controller('ListController', ['$scope', '$http', function($scope, $http)
       .then(function (response) {
         response.data.forEach(function (book) {
           book.due_date = new Date(book.due_date);
+          book.overdue = false;
+          if (moment().isAfter(book.due_date)) {
+            console.log(book.title + " is overdue!");
+              book.overdue = true;
+            }
         });
         $scope.books = response.data;
       });
   }
+
+
+
 
 //remove returned item
 $scope.returnBk = function(book) {
@@ -28,7 +37,7 @@ $scope.returnBk = function(book) {
           return;
         }
     };
-  
+
 
 
   }]);
