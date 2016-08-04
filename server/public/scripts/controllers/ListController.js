@@ -11,9 +11,16 @@ myApp.controller('ListController', ['$scope', '$http', function($scope, $http)
         response.data.forEach(function (book) {
           book.due_date = new Date(book.due_date);
           book.overdue = false;
+          book.due_soon = false;
+
           if (moment().isAfter(book.due_date)) {
-            console.log(book.title + " is overdue!");
+              book.due_soon = false;
               book.overdue = true;
+            } else if (moment(book.due_date).diff(moment(), 'days') <= 3) {
+              book.due_soon = true;
+            } else {
+              book.overdue = false;
+              book.due_soon = false;
             }
         });
         $scope.books = response.data;
