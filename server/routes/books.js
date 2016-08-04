@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
       res.sendStatus(500);
     }
 
-    client.query('SELECT title, author, barcode, due_date, username FROM books ' +
+    client.query('SELECT title, due_date, id, username FROM books ' +
           'JOIN users ON books.user_id = users.user_id;', function (err, result) {
       done();
 
@@ -28,9 +28,9 @@ router.post('/', function (req, res) {
       res.sendStatus(500);
     }
 
-    client.query('INSERT INTO books (title, author, barcode, due_date, user_id) ' +
-                  'VALUES ($1, $2, $3, $4, $5)',
-                   [book.title, book.author, book.id, book.dueDate, book.user],
+    client.query('INSERT INTO books (title, due_date, user_id) ' +
+                  'VALUES ($1, $2, $3)',
+                   [book.title, book.dueDate, book.user],
                  function (err, result) {
                    done();
 
@@ -44,16 +44,16 @@ router.post('/', function (req, res) {
   });
 });
 
-router.delete('/delete/:barcode', function(req, res) {
-    var barcode = req.params.barcode;
+router.delete('/delete/:id', function(req, res) {
+    var id = req.params.id;
     pg.connect(connectionString, function(err, client, done) {
             if (err) {
                 console.log('connection err');
                 res.sendStatus(500);
             }
             client.query('DELETE FROM books ' +
-                         'WHERE barcode = $1 ',
-                         [barcode],
+                         'WHERE id = $1 ',
+                         [id],
                 function(err, result) {
                     done();
                     if (err) {

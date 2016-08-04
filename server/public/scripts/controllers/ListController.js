@@ -32,10 +32,10 @@ myApp.controller('ListController', ['$scope', '$http', function($scope, $http)
 
 //remove returned item
 $scope.returnBk = function(book) {
-      var barcode = book.barcode;
+      var id = book.id;
       var returnBook = confirm('Are you sure you returned ' + book.title + '?');
       if (returnBook === true){
-        $http.delete('/books/delete/' + barcode)
+        $http.delete('/books/delete/' + id)
           .then(function (response) {
             getBooks();
             return;

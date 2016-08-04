@@ -2,8 +2,6 @@
     <thead>
             <tr>
               <th>Title</th>
-              <th>Author</th>
-              <th>Barcode</th>
               <th>Due Date</th>
               <th>Checked Out By:</th>
               <th></th>
@@ -12,8 +10,6 @@
     <tbody>
         <tr id="bookList" ng-class="{ 'red': book.overdue, 'yellow': book.due_soon}" ng-repeat="book in books | orderBy:'username'">
               <td id="book" name="title">{{book.title}}</td>
-              <td id="book" name="author">{{book.author}}</td>
-              <td id="book" name="id">{{book.barcode}}</td>
               <td id="book" name="dueDate">{{book.due_date | date: 'MM/dd/yyyy'}}</td>
               <td id="book" name="user">{{book.username}}</td>
               <td class="text-center"><button ng-click="returnBk(book)">Return</button></td>
