@@ -1,13 +1,16 @@
 body {
-  background-color: lightsteelblue;
+  background-color: steelblue;
+}
+
+header {
+  height: 125px;
+  width: auto;
+  background-image: url('../views/img/books.jpg');
 }
 
 h1 {
-  height: 100px;
-  width: auto;
-  text-align:  center;
-  color: white;
-  background: url('../views/img/bookshelf.jpeg');
+  color:steelblue;
+  margin-left: 30%;
 }
 
 .wrap {
@@ -21,4 +24,24 @@ h1 {
 
 .yellow {
   background-color: yellow;
+}
+
+footer {
+  height: 75px;
+  width: auto;
+  text-align: center;
+  color: white;
+}
+
+form {
+  margin-top: 5%;
+    margin-left: 25%;
+    margin-right:25%;
+    width: 100%;
+}
+
+img {
+  margin-left: 200px;
+  height: 100px;
+  width: auto;
 }
