@@ -1,3 +1,5 @@
+
+<select ng-model="selectedUser" ng-options="user.username for user in users">Checked Out By:</select>
 <table class="table">
     <thead>
             <tr>
@@ -8,7 +10,7 @@
             </tr>
             </thead>
     <tbody>
-        <tr id="bookList" ng-class="{ 'red': book.overdue, 'yellow': book.due_soon}" ng-repeat="book in books | orderBy:'username'">
+        <tr id="bookList" ng-class="{ 'red': book.overdue, 'yellow': book.due_soon}" ng-repeat="book in books | orderBy:'username'" | filter: 'selectedUser'>
               <td id="book" name="title">{{book.title}}</td>
               <td id="book" name="dueDate">{{book.due_date | date: 'MM/dd/yyyy'}}</td>
               <td id="book" name="user">{{book.username}}</td>
