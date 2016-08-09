@@ -1,22 +1,22 @@
 myApp.controller('ListController', ['$scope', '$http', function($scope, $http)
 {
 
-  $scope.users = [];
+  $scope.users = [ "Andrew", "Hannes", "Lyra", "Samantha" ];
 
-getUsers();
+
   getBooks();
 
   //get users
-  function getUsers () {
-    $http.get('/users')
-      .then(function (response) {
-        response.data.forEach(function (user) {
-          $scope.username = user.username;
-          $scope.user_id = user.user_id;
-          $scope.users.push(user);
-        })
-  })
-};
+//   function getUsers () {
+//     $http.get('/users')
+//       .then(function (response) {
+//         response.data.forEach(function (user) {
+//           $scope.username = user.username;
+//           $scope.user_id = user.user_id;
+//           $scope.users.push(user);
+//         })
+//   })
+// };
 
   //get list
   function getBooks() {
@@ -38,18 +38,8 @@ getUsers();
             }
         });
         $scope.books = response.data;
-        $scope.displayedItems = $scope.books;
       });
   }
-//filter by user
-$scope.filterItems = function () {
-
-    $scope.displayedItems = ($scope.books).filter($scope.selectedUser);
-
-  }
-
-
-
 
 //remove returned item
 $scope.returnBk = function(book) {
@@ -65,6 +55,15 @@ $scope.returnBk = function(book) {
           return;
         }
     };
+
+    // initialize filter object
+$scope.filter = {};
+
+// reset the filter
+$scope.resetFilter = function() {
+  // set filter object back to blank
+  $scope.filter = {};
+}
 
 
 
