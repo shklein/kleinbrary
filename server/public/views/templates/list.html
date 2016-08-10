@@ -1,5 +1,4 @@
 <select name="filter" id="filter" ng-model="filter" ng-options="user for user in users">Checked Out By:</select><br />
-<a ng-click="resetFilter()" class="filter-reset">View List</a>
 <table class="table">
     <thead>
             <tr>
@@ -10,7 +9,7 @@
             </tr>
             </thead>
     <tbody>
-        <tr id="bookList" ng-class="{ 'red': book.overdue, 'yellow': book.due_soon}" ng-repeat="book in books | orderBy:'username' | filter: filter">
+        <tr id="bookList" ng-class="{ 'red': book.overdue, 'yellow': book.due_soon}" ng-repeat="book in books | orderBy:'username'">
               <td id="book" name="title">{{book.title}}</td>
               <td id="book" name="dueDate">{{book.due_date | date: 'MM/dd/yyyy'}}</td>
               <td id="book" name="user">{{book.username}}</td>
